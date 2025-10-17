@@ -1,198 +1,243 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anshika Maurya - Portfolio</title>
   <style>
     :root {
-      --bg: #f5f7fa;
+      --bg: #f5f7fb;
       --card: #ffffff;
       --text: #1f2937;
       --muted: #6b7280;
-      --accent: #4f46e5;
-      --ring: rgba(99,102,241,.5);
+      --primary: #4f46e5;
+      --ring: rgba(99, 102, 241, 0.25);
     }
+
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       background: var(--bg);
+      color: var(--text);
     }
 
-    .layout {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 24px;
-      padding: 28px;
-      max-width: 1100px;
+    .container {
+      max-width: 980px;
       margin: 0 auto;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.04);
     }
 
-    .profile {
+    /* Header with profile image and name */
+    .header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 16px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      margin-top: 20px;
+    }
+
+    .avatar-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 20px;
       gap: 8px;
     }
 
     .avatar {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,.15);
-      background: #eee;
+      border: 2px solid #e5e7eb;
+      background: #e5e7eb;
     }
 
-    .name { margin: 8px 0 6px; font-size: 1.25rem; font-weight: 700; }
-    .location { color: var(--muted); font-size: .92rem; }
-
-    .upload { margin-top: 6px; display: flex; gap: 8px; align-items: center; }
-    #imageInput { display: none; }
-
-    .btn {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      background: #f7f7f7;
-      cursor: pointer;
+    .upload {
+      font-size: 12px;
     }
-    .btn:hover { background: #eee; }
 
-    nav a {
-      display: inline-block;
-      padding: 8px 12px;
+    .intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .intro h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .intro .subtitle {
+      margin: 4px 0 0 0;
+      color: var(--muted);
+    }
+
+    /* Sections */
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .section p {
+      margin: 6px 0 0;
       color: #374151;
-      text-decoration: none;
-      border-radius: 6px;
-      margin-right: 6px;
-      background: #f0f2f5;
     }
-    nav a:hover { background: #e2e8f0; }
 
-    .section { padding: 16px 0; }
-    h2 { margin: 0 0 12px; font-size: 1.25rem; }
+    /* Education / Experience lists */
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-    ul { margin: 6px 0 0 18px; padding: 0; }
-    li { margin-bottom: 8px; }
+    .timeline li {
+      padding: 10px 0;
+      border-bottom: 1px dashed #e5e7eb;
+    }
 
-    @media (max-width: 900px) {
-      .layout { grid-template-columns: 1fr; padding: 16px; }
-      nav { display: flex; overflow-x: auto; padding-bottom: 6px; }
+    .placeholder {
+      color: #6b7280;
+    }
+
+    /* Skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      text-align: center;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    @media (min-width: 800px) {
+      main {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Small helper for accessibility focus */
+    :focus {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
     }
   </style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="card profile" aria-label="Profile">
-      <img id="profileImage" class="avatar" src="https://via.placeholder.com/180" alt="Profile image">
-      <div class="upload">
-        <label class="btn" for="imageInput">Upload Photo</label>
-        <input type="file" id="imageInput" accept="image/*" />
+  <div class="container" role="main">
+    <header class="header" aria-label="Profile header">
+      <div class="avatar-wrap">
+        <img id="profileImg" class="avatar" alt="Profile image" />
+        <input id="imageInput" type="file" accept="image/*" aria-label="Upload profile image" class="upload" />
       </div>
-      <div class="name" id="nameText">Anshika Maurya</div>
-      <div class="location" id="locationText">[Location]</div>
-    </aside>
+      <div class="intro">
+        <h1>Anshika Maurya</h1>
+        <div class="subtitle">Personal Portfolio</div>
+      </div>
+    </header>
 
-    <main class="card" role="main" aria-label="Main content">
-      <nav aria-label="Section navigation" style="margin-bottom:12px;">
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-      </nav>
-
-      <section id="about" class="section">
-        <h2>About</h2>
-        <p id="aboutText">Hello! I’m Anshika Maurya. This is a placeholder bio. You can customize this section with a short summary about yourself, your passions, and what you’re looking for.</p>
+    <main aria-label="Portfolio sections">
+      <!-- About -->
+      <section id="about" class="section" aria-labelledby="about-title">
+        <h2 id="about-title">About</h2>
+        <p class="placeholder">
+          This section is for a brief introduction. Please add information about your background, goals, and focus areas.
+        </p>
       </section>
 
-      <section id="education" class="section">
-        <h2>Education</h2>
-        <ul id="educationList"></ul>
+      <!-- Education -->
+      <section id="education" class="section" aria-labelledby="education-title">
+        <h2 id="education-title">Education</h2>
+        <ul class="timeline" aria-label="Education timeline">
+          <li class="placeholder">
+            No education details provided yet. Add your education entries here.
+          </li>
+        </ul>
       </section>
 
-      <section id="experience" class="section">
-        <h2>Experience</h2>
-        <ul id="experienceList"></ul>
+      <!-- Experience -->
+      <section id="experience" class="section" aria-labelledby="experience-title">
+        <h2 id="experience-title">Experience</h2>
+        <ul class="timeline" aria-label="Experience timeline">
+          <li class="placeholder">
+            No experience entries provided yet. Add your roles, organizations, and dates here.
+          </li>
+        </ul>
       </section>
 
-      <section id="skills" class="section">
-        <h2>Skills</h2>
-        <ul id="skillsList"></ul>
+      <!-- Skills -->
+      <section id="skills" class="section" aria-labelledby="skills-title">
+        <h2 id="skills-title">Skills</h2>
+        <div class="skills-grid" aria-label="Skills">
+          <div class="chip" aria-label="Skills placeholder">Skill</div>
+          <div class="chip" aria-label="Skills placeholder">Skill</div>
+          <div class="chip" aria-label="Skills placeholder">Skill</div>
+          <div class="chip" aria-label="Skills placeholder">Skill</div>
+          <div class="chip" aria-label="Skills placeholder">Skill</div>
+          <div class="chip" aria-label="Skills placeholder">Skill</div>
+        </div>
       </section>
     </main>
   </div>
 
   <script>
-    // Default data (placeholders when specific data isn't provided)
-    const data = {
-      name: "Anshika Maurya",
-      location: "[Location]",
-      about: "Hello, I’m Anshika Maurya. This is a placeholder bio. You can customize this section with a short summary about yourself, your passions, and what you’re looking for.",
-      education: [
-        { degree: "[Degree]", institution: "[Institution]", year: "[Year or Period]" }
-      ],
-      experience: [
-        { role: "[Role]", company: "[Company]", period: "[Period]", details: "[Details about responsibilities and achievements]" }
-      ],
-      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
-    };
-
-    // Populate static fields
-    document.getElementById('nameText').textContent = data.name;
-    document.getElementById('locationText').textContent = data.location;
-    document.getElementById('aboutText').textContent = data.about;
-
-    // Populate education
-    const eduList = document.getElementById('educationList');
-    data.education.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.degree} at ${item.institution} (${item.year})`;
-      eduList.appendChild(li);
-    });
-
-    // Populate experience
-    const expList = document.getElementById('experienceList');
-    data.experience.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.role} • ${item.company} (${item.period}) — ${item.details}`;
-      expList.appendChild(li);
-    });
-
-    // Populate skills
-    const skillsList = document.getElementById('skillsList');
-    data.skills.forEach(skill => {
-      const li = document.createElement('li');
-      li.textContent = skill;
-      skillsList.appendChild(li);
-    });
-
-    // Image upload handler
-    const imageInput = document.getElementById('imageInput');
-    const profileImage = document.getElementById('profileImage');
-    imageInput.addEventListener('change', function(e) {
-      const file = e.target.files && e.target.files[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        profileImage.src = url;
+    // Initialize with a simple placeholder avatar (AM)
+    document.addEventListener('DOMContentLoaded', function() {
+      const avatar = document.getElementById('profileImg');
+      if (!avatar.src) {
+        const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">' +
+                    '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+                    '<stop stop-color="#e2e8f0"/><stop offset="1" stop-color="#cbd5e1"/></linearGradient></defs>' +
+                    '<rect width="200" height="200" fill="url(#g)"/>' +
+                    '<text x="50%" y="54%" text-anchor="middle" font-family="Arial" font-size="72" fill="#64748b">AM</text>' +
+                    '</svg>';
+        avatar.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
       }
+    });
+
+    // Enable uploading of a profile image
+    const fileInput = document.getElementById('imageInput');
+    const avatarImg = document.getElementById('profileImg');
+
+    fileInput.addEventListener('change', function(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        alert('Please select an image file.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        avatarImg.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
     });
   </script>
 </body>
 </html>
-```
