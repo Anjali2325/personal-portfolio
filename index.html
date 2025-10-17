@@ -1,0 +1,198 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anshika Maurya - Portfolio</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #4f46e5;
+      --ring: rgba(99,102,241,.5);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      padding: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      gap: 8px;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,.15);
+      background: #eee;
+    }
+
+    .name { margin: 8px 0 6px; font-size: 1.25rem; font-weight: 700; }
+    .location { color: var(--muted); font-size: .92rem; }
+
+    .upload { margin-top: 6px; display: flex; gap: 8px; align-items: center; }
+    #imageInput { display: none; }
+
+    .btn {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: #f7f7f7;
+      cursor: pointer;
+    }
+    .btn:hover { background: #eee; }
+
+    nav a {
+      display: inline-block;
+      padding: 8px 12px;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-right: 6px;
+      background: #f0f2f5;
+    }
+    nav a:hover { background: #e2e8f0; }
+
+    .section { padding: 16px 0; }
+    h2 { margin: 0 0 12px; font-size: 1.25rem; }
+
+    ul { margin: 6px 0 0 18px; padding: 0; }
+    li { margin-bottom: 8px; }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; padding: 16px; }
+      nav { display: flex; overflow-x: auto; padding-bottom: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="card profile" aria-label="Profile">
+      <img id="profileImage" class="avatar" src="https://via.placeholder.com/180" alt="Profile image">
+      <div class="upload">
+        <label class="btn" for="imageInput">Upload Photo</label>
+        <input type="file" id="imageInput" accept="image/*" />
+      </div>
+      <div class="name" id="nameText">Anshika Maurya</div>
+      <div class="location" id="locationText">[Location]</div>
+    </aside>
+
+    <main class="card" role="main" aria-label="Main content">
+      <nav aria-label="Section navigation" style="margin-bottom:12px;">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+      </nav>
+
+      <section id="about" class="section">
+        <h2>About</h2>
+        <p id="aboutText">Hello! I’m Anshika Maurya. This is a placeholder bio. You can customize this section with a short summary about yourself, your passions, and what you’re looking for.</p>
+      </section>
+
+      <section id="education" class="section">
+        <h2>Education</h2>
+        <ul id="educationList"></ul>
+      </section>
+
+      <section id="experience" class="section">
+        <h2>Experience</h2>
+        <ul id="experienceList"></ul>
+      </section>
+
+      <section id="skills" class="section">
+        <h2>Skills</h2>
+        <ul id="skillsList"></ul>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Default data (placeholders when specific data isn't provided)
+    const data = {
+      name: "Anshika Maurya",
+      location: "[Location]",
+      about: "Hello, I’m Anshika Maurya. This is a placeholder bio. You can customize this section with a short summary about yourself, your passions, and what you’re looking for.",
+      education: [
+        { degree: "[Degree]", institution: "[Institution]", year: "[Year or Period]" }
+      ],
+      experience: [
+        { role: "[Role]", company: "[Company]", period: "[Period]", details: "[Details about responsibilities and achievements]" }
+      ],
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+    };
+
+    // Populate static fields
+    document.getElementById('nameText').textContent = data.name;
+    document.getElementById('locationText').textContent = data.location;
+    document.getElementById('aboutText').textContent = data.about;
+
+    // Populate education
+    const eduList = document.getElementById('educationList');
+    data.education.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.degree} at ${item.institution} (${item.year})`;
+      eduList.appendChild(li);
+    });
+
+    // Populate experience
+    const expList = document.getElementById('experienceList');
+    data.experience.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.role} • ${item.company} (${item.period}) — ${item.details}`;
+      expList.appendChild(li);
+    });
+
+    // Populate skills
+    const skillsList = document.getElementById('skillsList');
+    data.skills.forEach(skill => {
+      const li = document.createElement('li');
+      li.textContent = skill;
+      skillsList.appendChild(li);
+    });
+
+    // Image upload handler
+    const imageInput = document.getElementById('imageInput');
+    const profileImage = document.getElementById('profileImage');
+    imageInput.addEventListener('change', function(e) {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        profileImage.src = url;
+      }
+    });
+  </script>
+</body>
+</html>
+```
