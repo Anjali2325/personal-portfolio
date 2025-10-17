@@ -1,168 +1,153 @@
-<!DOCTYPE html>
+Here's a minimal single-file HTML app (no external dependencies) that includes the updated details for the GitHub Pages page.
+
+```html
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anshika Maurya - Profile</title>
   <style>
     :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #5b6570;
-      --accent: #2563eb;
+      --bg: #0b1020;
+      --card: #141a2a;
+      --text: #e6e6f0;
+      --muted: #a5a9b8;
+      --accent: #4e8cff;
+      --border: #2a2f46;
     }
-
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
-    .wrapper { max-width: 860px; margin: 40px auto; padding: 0 16px; }
-
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 28px;
-      box-shadow: 0 8px 20px rgba(0,0,0,.05);
-    }
-
-    header { text-align: left; margin-bottom: 20px; }
-    .name { font-size: 34px; font-weight: 700; margin: 0; letter-spacing: .5px; }
-    .tag { font-size: 18px; color: #374151; margin: 6px 0 8px; letter-spacing: 0.25em; }
-    .contact { font-size: 14px; color: var(--muted); margin-top: 6px; }
-    .contact a { color: var(--accent); text-decoration: none; }
-    .contact a:hover { text-decoration: underline; }
-
-    main { display: grid; grid-template-columns: 1fr; gap: 16px; }
-
-    section { padding: 8px 0; }
-    h3 { font-size: 20px; margin: 14px 0 8px; color: #111827; }
-    h4 { font-size: 15px; margin: 0 0 6px; color: #374151; }
-    time { font-size: 13px; color: var(--muted); }
-
-    ul { padding-left: 22px; margin: 6px 0 12px; }
-    li { margin: 6px 0; line-height: 1.5; }
-
-    /* Simple responsive tweak */
-    @media (min-width: 720px) {
-      .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-      section { padding: 6px 0; }
-    }
-
-    /* Optional dark mode toggle (minimal, not required) */
-    .btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
-    .btn {
-      border: 1px solid #d1d5db;
-      background: #fff;
-      padding: 6px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 13px;
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+    a { color: var(--accent); text-decoration: none; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px 16px 40px; }
+    header { padding: 28px 20px; border-bottom: 1px solid var(--border); text-align: left; }
+    .name { font-size: 2.1rem; font-weight: 700; margin: 0; letter-spacing: .5px; }
+    .subtitle { color: var(--muted); margin: 6px 0 0; font-weight: 500; }
+    .contact { margin: 8px 0 0; font-size: 0.95rem; color: #cbd5e1; }
+    section { margin: 28px 0; padding: 0 2px; }
+    h2 { font-size: 1.25rem; margin-bottom: 8px; color: #e9eaff; }
+    p, li { line-height: 1.6; color: #e3e6f5; }
+    ul { padding-left: 20px; margin: 6px 0; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .card { background: rgba(20, 26, 42, 0.85); border: 1px solid var(--border); padding: 14px 16px; border-radius: 8px; }
+    .item { margin-bottom: 10px; }
+    .item > strong { display: block; }
+    .inline { display: inline; }
+    footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 10px 0 20px; }
+    @media (min-width: 700px) {
+      .grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      header { padding: 28px 24px; }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="card" aria-label="Profile Card">
-      <header>
-        <p class="tag" aria-label="Student tag">S T U D E N T</p>
-        <h1 class="name">Anshika Maurya</h1>
-        <div class="contact" aria-label="Contact details">
-          <span>anshi.maurya008@gmail.com</span> |
-          <span>Linkedin: 
-            <a href="https://www.linkedin.com/in/anshika-maurya008" target="_blank" rel="noopener">www.linkedin.com/in/anshika-maurya008</a>
-          </span>
-        </div>
-      </header>
+  <div class="container">
+    <header>
+      <h1 class="name">Anshika Maurya</h1>
+      <div class="subtitle">S T U D E N T</div>
+      <div class="contact">
+        <span id="email">anshi.maurya008@gmail.com</span> • 
+        <a href="https://www.linkedin.com/in/anshika-maurya008" target="_blank" rel="noopener">LinkedIn: www.linkedin.com/in/anshika-maurya008</a>
+      </div>
+    </header>
 
-      <main class="layout" id="profile-content">
-        <section id="objective" aria-label="Objective">
-          <h3>Objective</h3>
-          <p>
-            Aspiring Software Developer pursuing a BCA degree at the University of Lucknow.
-            Possessing a strong foundation in Python, HTML, CSS and Mathematics. I am eager to apply my skills to create innovative software solutions.
-            With a background in Computer Science from my 12th grade (with PCM). I am actively seeking opportunities to join a dynamic team and contribute to meaningful projects.
-          </p>
-        </section>
+    <section id="objective" class="section card">
+      <h2>Objective</h2>
+      <p>
+        Aspiring Software Developer pursuing a BCA degree at the University of Lucknow.
+        Possessing a strong foundation in Python, HTML, CSS and Mathematics. I am eager to apply my skills to create
+        innovative software solutions.
+        With a background in Computer Science from my 12th grade (with PCM). I am actively seeking opportunities to join a
+        dynamic team and contribute to meaningful projects.
+      </p>
+    </section>
 
-        <section id="experience" aria-label="Experience">
-          <h3>Experience</h3>
-
-          <div class="exp-item">
-            <h4>Electronic Arts Software Engineering virtual experience program on Forage</h4>
-            <time>June 2025</time>
+    <section id="experience" class="section grid">
+      <div class="card">
+        <h2>Experience</h2>
+        <ul>
+          <li class="item">
+            <strong>Electronic Arts Software Engineering virtual experience program on Forage</strong> — June 2025
             <ul>
               <li>Proposed a new feature for the EA Sports College Football and wrote a Feature Proposal describing it to other stakeholders.</li>
               <li>Built a class diagram and created a header file in C++ with class definitions for each object.</li>
               <li>Patched a bugfix and optimized the EA Sports College Football codebase by implementing an improved data structure.</li>
             </ul>
-          </div>
+          </li>
+        </ul>
+      </div>
 
-          <div class="exp-item">
-            <h4>Web Development Intern | CodSoft | Virtual Internship</h4>
-            <time>June-July 2025</time>
+      <div class="card">
+        <h2>Experience (cont.)</h2>
+        <ul>
+          <li class="item">
+            <strong>Web Development Intern | CodSoft | Virtual Internship</strong> — June-July 2025
             <ul>
               <li>Completed a 4-week intensive virtual internship focused on front-end web development.</li>
               <li>Developed responsive and interactive web projects using HTML, CSS, and JavaScript.</li>
               <li>Delivered assigned tasks on time while maintaining code quality and functionality.</li>
               <li>Gained hands-on experience in problem-solving, debugging, and project deployment.</li>
             </ul>
-          </div>
-        </section>
-
-        <section id="education" aria-label="Education">
-          <h3>Education</h3>
-          <div class="edu-item">
-            <h4>University Of Lucknow, B.C.A. 2024-27</h4>
-            <div>Bachelor of Computer Application | Ongoing</div>
-            <div>Sem 1 : 8.42 SGPA | Sem 2 : 8.88 SGPA</div>
-          </div>
-
-          <div class="edu-item">
-            <h4>C.B.S.E. Board , 12th 2023-24</h4>
-            <div>PCM (with CS) | Percentage : 78.4%</div>
-          </div>
-
-          <div class="edu-item">
-            <h4>C.B.S.E. Board , 10th 2021-22</h4>
-            <div>Percentage : 90.33%</div>
-          </div>
-        </section>
-
-        <section id="skills" aria-label="Skills">
-          <h3>Skills & abilities</h3>
-          <ul>
-            <li>HTML, CSS</li>
-            <li>C Programming</li>
-            <li>Python</li>
-            <li>Problem solving</li>
-          </ul>
-        </section>
-      </main>
-
-      <div class="btns" aria-label="Actions">
-        <button class="btn" id="printBtn" title="Print Page">Print</button>
-        <button class="btn" id="downloadBtn" title="Download as HTML">Save HTML</button>
+          </li>
+        </ul>
       </div>
-    </div>
+    </section>
+
+    <section id="education" class="section card">
+      <h2>Education</h2>
+      <ul>
+        <li>
+          <strong>University Of Lucknow</strong>, B.C.A. 2024-27 — Bachelor of Computer Application | Ongoing
+          <br/> Sem 1 : 8.42 SGPA | Sem 2 : 8.88 SGPA
+        </li>
+        <li>
+          <strong>C.B.S.E. Board</strong>, 12th 2023-24 — PCM (with CS) | Percentage : 78.4%
+        </li>
+        <li>
+          <strong>C.B.S.E. Board</strong>, 10th 2021-22 — Percentage : 90.33%
+        </li>
+      </ul>
+    </section>
+
+    <section id="skills" class="section card">
+      <h2>Skills & abilities</h2>
+      <ul>
+        <li>HTML, CSS</li>
+        <li>C Programming</li>
+        <li>Python</li>
+        <li>Problem solving</li>
+      </ul>
+    </section>
+
+    <footer>
+      © 2025 Anshika Maurya
+    </footer>
   </div>
 
+  <!-- Optional small JS: enable clicking email to copy -->
   <script>
-    // Minimal interactivity: print and download current HTML
-    document.getElementById('printBtn').addEventListener('click', function () {
-      window.print();
-    });
-    document.getElementById('downloadBtn').addEventListener('click', function () {
-      // Create a simple HTML blob containing the content of the card
-      const content = document.querySelector('.card').outerHTML;
-      const blob = new Blob(['<!doctype html><html><head><meta charset="utf-8"/><title>Anshika Maurya - Profile</title></head><body>' + content + '</body></html>'], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'anshika_maurya_profile.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
+    // Copy email to clipboard on click for convenience (optional)
+    (function() {
+      var emailEl = document.getElementById('email');
+      if (!emailEl) return;
+      emailEl.style.cursor = 'copy';
+      emailEl.title = 'Click to copy email';
+      emailEl.addEventListener('click', function() {
+        var text = emailEl.textContent.trim();
+        if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text);
+        } else {
+          // Fallback for older browsers
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+      });
+    }());
   </script>
 </body>
 </html>
+```
